@@ -1,0 +1,86 @@
+<div class="wrapper">
+    <app-sidebar style="background-color: white !important;"></app-sidebar>
+
+    <div class="main">
+        <nav class="navbar navbar-expand navbar-theme">
+            <a class="sidebar-toggle d-flex mr-2">
+                <i class="hamburger align-self-center"></i>
+            </a>
+        </nav>
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Crear backups
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboard</a></li>
+                            <!-- <li class="breadcrumb-item"><a href="" [routerLink]="['/edificios']">Crear backups</a></li> -->
+                            <li class="breadcrumb-item"><a>Crear backups</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-12" *ngIf="error_message">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <div class="alert-message">
+                                {{error_message}}
+                            </div>
+
+                            <button type="button" class="close" (click)="error_alert()" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12" *ngIf="success_message">
+                        <div class="alert alert-info alert-dismissible" role="alert">
+                            <div class="alert-message">
+                                {{success_message}}
+                            </div>
+
+                            <button type="button" class="close" (click)="success_alert()" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-8">
+                        <div class="card">
+                            <div id="card-header"class="card-header">
+
+                                <!-- <h5 id="textoblanco" class="card-title">Complete el formulario</h5> -->
+                                <h6 id="textoblanco1" class="card-subtitle text-muted">Crear backups</h6>
+                            </div>
+                            <div class="card-body">
+                                <!-- <form #backupsForm="ngForm" (ngSubmit)="onSubmit(backupsForm)">
+                                    <div class="row">
+
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Dirección</label>
+                                                <input type="file" class="form-control" placeholder=""  required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                    
+                                </form> -->
+                                <div class="row">
+                                        
+                                    <div class="col-lg-6">
+                                        <button type="submit"  class="btn btn-success btn-lg" (click)="backups()">Generar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+       
+    </div>
+</div>
+    

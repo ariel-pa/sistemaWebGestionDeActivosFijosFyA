@@ -1,0 +1,149 @@
+<div class="wrapper">
+    <app-sidebar style="background-color: white !important;"></app-sidebar>
+
+    <div class="main">
+        <nav class="navbar navbar-expand navbar-theme">
+            <a class="sidebar-toggle d-flex mr-2">
+                <i class="hamburger align-self-center"></i>
+            </a>
+        </nav>
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Registro de Edificio
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="" [routerLink]="['/edificios']">Edificios</a></li>
+                            <li class="breadcrumb-item"><a>Registro de edificio</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-12" *ngIf="error_message">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <div class="alert-message">
+                                {{error_message}}
+                            </div>
+
+                            <button type="button" class="close" (click)="error_alert()" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12" *ngIf="success_message">
+                        <div class="alert alert-info alert-dismissible" role="alert">
+                            <div class="alert-message">
+                                {{success_message}}
+                            </div>
+
+                            <button type="button" class="close" (click)="success_alert()" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-10">
+                        <div class="card">
+                            <div id="card-header"class="card-header">
+
+                                <h5 id="textoblanco" class="card-title">Complete el formulario</h5>
+                                <h6 id="textoblanco1" class="card-subtitle text-muted">Agregar edificio</h6>
+                            </div>
+                            <div class="card-body">
+                                <form #edificioForm="ngForm" (ngSubmit)="onSubmit(edificioForm)">
+                                    <div class="row">
+
+                                        <div class="col-lg-5">
+                                            <div class="form-group">
+                                                <label class="form-label">Nombre del edificio</label>
+                                                <input type="text" class="form-control" placeholder="" #NombreEdi="ngModel"  name="NombreEdi" [(ngModel)]="edificio.NombreEdi" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="form-group">
+                                                <label class="form-label">Servicio que realiza</label>
+                                                <textarea class="form-control"  cols="2" rows="2"  #Servicio="ngModel"  name="Servicio" [(ngModel)]="edificio.Servicio" required></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <div class="form-group">
+                                                <label class="form-label">Dirección</label>
+                                                <input type="text" class="form-control" placeholder="" #Direccion="ngModel"  name="Direccion" [(ngModel)]="edificio.Direccion">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label class="form-label">Ubicación</label>
+                                                <select class="form-control"  #idUbicacion="ngModel" required name="idUbicacion" [(ngModel)]="edificio.idUbicacion">
+                                                    <option value="1" disabled>SELECCIONAR</option>
+                                                    <option value="{{item.idUbicacion}}" *ngFor="let item of ubicaciones">{{item.NombreLugar.toUpperCase()}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label class="form-label">Latitud</label>
+                                                <input type="number" class="form-control" placeholder="-00.00000" #Latitud="ngModel"  name="Latitud" [(ngModel)]="edificio.Latitud">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label class="form-label">Longitud</label>
+                                                <input type="number" class="form-control" placeholder="-00.00000" #Longitud="ngModel"  name="Longitud" [(ngModel)]="edificio.Longitud">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-2.5">
+                                            <!-- <button  class="dropdown-item" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-save-ubicacion"><span class="sidebar-middle mr-2 fas fa-fw fa-plus" aria-hidden="true"></span>Nueva ubicación</button> -->
+                                            <a class="dropdown-item" href="" data-toggle="modal" data-target="#modal-save-ubicacion" class="btn btn-primary btn-lg" >Nueva ubicación</a> 
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <button type="submit" class="btn btn-success btn-lg">Guardar</button>
+                                        </div>
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--MODAL REGISTRAR UBICACION-->
+                <div class="modal fade" id="modal-save-ubicacion" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+                    <form #ubicacionForm="ngForm" (ngSubmit)="save_ubicacion(ubicacionForm)">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content col-lg-11">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Registrar ubicación</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body m-3">
+                                   <div class="form-group col-lg-8">
+                                        <b>Nombre ubicación</b>
+                                        <input type="text" class="form-control" #NombreLugar="ngModel" name="NombreLugar" [(ngModel)]="ubicaciones.NombreLugar" required>
+                                   </div>
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+       
+    </div>
+</div>
+    

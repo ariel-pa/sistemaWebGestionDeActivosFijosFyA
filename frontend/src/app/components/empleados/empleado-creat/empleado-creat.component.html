@@ -1,0 +1,121 @@
+<div class="wrapper">
+    <app-sidebar style="background-color: white !important;"></app-sidebar>
+
+    <div class="main">
+        <nav class="navbar navbar-expand navbar-theme">
+            <a class="sidebar-toggle d-flex mr-2">
+                <i class="hamburger align-self-center"></i>
+            </a>
+        </nav>
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Registro de Empleado
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="" [routerLink]="['/empleados']">Empleados</a></li>
+                            <li class="breadcrumb-item"><a>Registro de empleado</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-12" *ngIf="error_message">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <div class="alert-message">
+                                {{error_message}}
+                            </div>
+
+                            <button type="button" class="close" (click)="error_alert()" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12" *ngIf="success_message">
+                        <div class="alert alert-info alert-dismissible" role="alert">
+                            <div class="alert-message">
+                                {{success_message}}
+                            </div>
+
+                            <button type="button" class="close" (click)="success_alert()" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-10">
+                        <div class="card">
+                            <div id="card-header"class="card-header">
+                                <h5 id="textoblanco" class="card-title">Complete el formulario</h5>
+                                <h6 id="textoblanco1" class="card-subtitle text-muted">Agregar Empleado</h6>
+                            </div>
+                            <div class="card-body">
+                                <form #empleadoForm="ngForm" (ngSubmit)="onSubmit(empleadoForm)">
+                                    <div class="row">
+
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label class="form-label">Nombre</label>
+                                                <input type="text" class="form-control" placeholder="Nombre completo" #Nombres="ngModel"  name="Nombres" [(ngModel)]="empleado.Nombres" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="form-group">
+                                                <label class="form-label">Apellidos</label>
+                                                <input type="text" class="form-control" placeholder="Apellido completo" #Apellidos="ngModel"  name="Apellidos" [(ngModel)]="empleado.Apellidos" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Cargo</label>
+                                                <input type="text" class="form-control" placeholder="" #Cargo="ngModel"  name="Cargo" [(ngModel)]="empleado.Cargo" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" class="form-control" placeholder="" #Email="ngModel"  name="Email" [(ngModel)]="empleado.Email">
+                                            </div>
+                                        </div> -->
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label class="form-label">Telefono</label>
+                                                <input type="text" class="form-control" placeholder="" #Telefono="ngModel"  name="Telefono" [(ngModel)]="empleado.Telefono">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="form-group">
+                                                <label class="form-label">Dirección</label>
+                                                <input type="text" class="form-control" placeholder="" #Direccion="ngModel"  name="Direccion" [(ngModel)]="empleado.Direccion" >
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Ambiente</label>
+                                                <select class="form-control"  #idAmbiente="ngModel" required name="idAmbiente" [(ngModel)]="empleado.idAmbiente" >
+                                                    <option value="1" disabled>SELECCIONAR</option>
+                                                    <option value="{{item.idAmbiente}}" *ngFor="let item of ambientes">{{item.NombreAmb.toUpperCase()}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                    <button type="submit" class="btn btn-success btn-lg">Guardar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+       
+    </div>
+</div>
+    

@@ -1,0 +1,153 @@
+<div class="wrapper ">
+    <nav id="sidebar" class="sidebar" style="background:b0b0b0 !important">
+        <a class="sidebar-brand" href="index.html">
+      <svg>
+        <use xlink:href="#ion-ios-pulse-strong"></use>
+      </svg>
+      
+      <p class="h4">Gestión de activos fijos</p>
+      <!-- <p color="red">Fe y Alegría Chuquisaca</p> -->
+    
+        </a>
+        <div class="sidebar-content">
+            <div class="sidebar-user">
+                
+                <img src="../../../assets/img/logoFYA.png" class="img-fluid rounded-0 mb-2" alt="Linda Miller" />
+                <div class="font-weight-bold"></div>
+                <p>Fe y Alegría Chuquisaca</p>
+                <small></small>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li class="sidebar-header">
+                    Main
+                </li>
+                
+                <li class="sidebar-item" routerLinkActive="sidebar-item active">
+                    <a class="sidebar-link" [routerLink]="['/dashboard']">
+                        <i class="align-middle mr-2 fas fa-fw fa-home"></i> <span class="align-middle">Dashboards</span>
+                    </a>
+                </li>
+                
+                <!-- <li class="sidebar-item" routerLinkActive="sidebar-item active">
+                    <a class="sidebar-link" [routerLink]="['/activos']">
+                        <i class="align-middle mr-2 fas fa-fw fa-book"></i> <span class="align-middle">Activos fijos</span>
+                    </a>
+                </li> -->
+                <!-- Ruta alta de activos -->
+                <!-- <li class="sidebar-item" routerLinkActive="sidebar-item active"> 
+                    <a class="sidebar-link" [routerLink]="['/altas']">
+                        <i class="align-middle mr-2 fas fa-fw fa-book"></i> <span class="align-middle">Alta activos fijos</span>
+                    </a>
+                </li> -->
+                <!-- <li class="sidebar-item" routerLinkActive="sidebar-item active">
+                    <a class="sidebar-link" [routerLink]="['/empleados']">
+                        <i class="align-middle mr-2 fas fa-fw fa-book"></i> <span class="align-middle">Empleados</span>
+                    </a>
+                </li> -->
+                
+                <li class="sidebar-item" routerLinkActive="sidebar-item active"> 
+                    <a href="#ActvoFijo" class="sidebar-link" data-toggle="collapse">
+                        <i class="align-middle mr-2 fas fa-fw fa-th"></i> <span class="align-middle">Activos Fijos</span>
+                    </a>
+                    <ul id="ActvoFijo" class="alta-dropdown list-unstyled collapse" data-parent="#ActvoFijo">
+                        
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/activos']">-Inventariado</a></li>
+
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/altas']">-Alta de Activos Fijos</a></li>
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/activos/asignados']">-Listado de altas</a></li>
+                        
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/devolucion']">-Listado de devoluciones</a></li>
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/mantenimiento']">-Listado mantenimientos</a></li>
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/bajas']">-Listado de bajas</a></li>
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/historialAltas']">-Historial de asignaciones</a></li>
+                       
+                    </ul>
+                </li>
+               
+                
+
+                <li class="sidebar-item" *ngIf="identity.Rol == 'ADMIN'" routerLinkActive="sidebar-item active"> 
+                    <a href="#Derepciación" class="sidebar-link" data-toggle="collapse">
+                        <i class="align-middle mr-2 fas fa-fw fa-industry"></i> <span class="align-middle">Depreciaciones</span>
+                    </a>
+                    <ul id="Derepciación" class="alta-dropdown list-unstyled collapse " data-parent="#Derepciación">
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/depreciaciones']">-Depreciación</a></li>
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/revalorizaciones']">-Revalorizaciones</a></li>
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/valores']">-Valores de depreciación</a></li> 
+
+                        <li class="sidebar-item" *ngIf="identity.Rol == 'ADMIN'"routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/historialUfvs']">-Historial de ufvs</a></li>                       
+                    </ul>
+                </li>
+                <!-- HISTORIAL -->
+                <!-- <li class="sidebar-item"  routerLinkActive="sidebar-item active"> 
+                    <a href="#Historial" class="sidebar-link" data-toggle="collapse">
+                        <i class="align-middle mr-2 fas fa-fw fa-file"></i> <span class="align-middle">Historial</span>
+                    </a>
+                    <ul id="Historial" class="alta-dropdown list-unstyled collapse " data-parent="#Historial">
+                       
+                        
+
+                        
+                    </ul>
+                </li> -->
+                <li class="sidebar-item" routerLinkActive="sidebar-item active"> 
+                    <a href="#Contable" class="sidebar-link" data-toggle="collapse">
+                        <i class="align-middle mr-2 fas fa-fw fa-book"></i> <span class="align-middle">Rubros y Tipos de bien</span>
+                    </a>
+                    <ul id="Contable" class="alta-dropdown list-unstyled collapse " data-parent="#Contable">
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/rubros']">-Rubro Contable</a></li>
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/tipobienes']">-Tipo de Activo Fijo</a></li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item" routerLinkActive="sidebar-item active"> 
+                    <a href="#Responsable" class="sidebar-link" data-toggle="collapse">
+                        <i class="align-middle mr-2 fas fa-fw fa-globe"></i> <span class="align-middle">Ubicación y Responsables</span>
+                    </a>
+                    <ul id="Responsable" class="alta-dropdown list-unstyled collapse " data-parent="#Responsable">
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/empleados']">-Empleado</a></li>
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/ambientes']">-Ambiente</a></li>
+                        <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="['/edificios']">-Edificio</a></li>
+                        <!-- <li class="sidebar-item" routerLinkActive="sidebar-item active"><a class="sidebar-link" [routerLink]="">-Ubicación</a></li> -->
+                    </ul>
+                </li>
+
+                <li class="sidebar-item" routerLinkActive="sidebar-item active"> 
+                    <a href="#alta" class="sidebar-link" data-toggle="collapse">
+                        <i class="sidebar-middle mr-2 fas fa-fw fa-book"></i> <span >Proyectos</span>
+                    </a>
+                    <ul id="alta" class="alta-dropdown list-unstyled collapse " data-parent="#alta">
+                        <!-- <li class="sidebar-item " routerLinkActive="sidebar-item active show"><a class="sidebar-link" [routerLink]="">-Programa</a></li> -->
+                        <li class="sidebar-item " routerLinkActive="sidebar-item active show"><a class="sidebar-link" [routerLink]="['/proyectos']">-Proyectos</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item" routerLinkActive="sidebar-item active"> 
+                    <a href="#tablas" class="sidebar-link" data-toggle="collapse">
+                        <i class="sidebar-middle mr-2 fas fa-fw fa-window-restore"></i> <span >Administración de tablas</span>
+                    </a>
+                    <ul id="tablas" class="alta-dropdown list-unstyled collapse " data-parent="#tablas">
+                        <!-- <li class="sidebar-item " routerLinkActive="sidebar-item active show"><a class="sidebar-link" [routerLink]="">-Programa</a></li> -->
+                        <li class="sidebar-item " routerLinkActive="sidebar-item active show"><a class="sidebar-link" [routerLink]="['/proveedores']">-Proveedores</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-item"  *ngIf="identity.Rol == 'ADMIN'" routerLinkActive="sidebar-item active"> 
+                    <a class="sidebar-link" [routerLink]="['/buckups/registrar']">
+                        <i class="align-middle mr-2 fas fa-fw fa-database"></i> <span class="align-middle">Backups</span>
+                    </a>
+                </li>
+                <!-- Ruta del usuario solo con ADMIN -->
+                <li class="sidebar-item"  *ngIf="identity.Rol == 'ADMIN'" routerLinkActive="sidebar-item active"> 
+                    <a class="sidebar-link" [routerLink]="['/usuarios']">
+                        <i class="align-middle mr-2 fas fa-fw fa-users"></i> <span class="align-middle">Usuarios</span>
+                    </a>
+                </li>
+                <li class="sidebar-item" >
+                    <a class="sidebar-link" (click)="logout()">
+                        <i class="align-middle mr-2 fas fa-fw fa-power-off"></i> <span class="align-middle">Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

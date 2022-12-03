@@ -1,0 +1,154 @@
+
+<div class="wrapper">
+    <app-sidebar style="background: white !important;"></app-sidebar>
+    <div class="main">
+        <nav class="navbar navbar-expand navbar-theme">
+            <a class="sidebar-toggle d-flex mr-2">
+        <i class="hamburger align-self-center"></i>
+      </a>
+    
+            <!-- <div class="navbar-collapse collapse">
+                <ul class="navbar-nav ml-auto">
+                    
+                    <li class="nav-item dropdown ml-lg-2">
+                        <a class="nav-link dropdown-toggle position-relative" href="#" id="userDropdown" data-toggle="dropdown">
+                                <i class="align-middle fas fa-cog"></i>
+                            </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-user"></i> View Profile</a>
+                            <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-comments"></i> Contacts</a>
+                            <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-chart-pie"></i> Analytics</a>
+                            <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-cogs"></i> Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"><i class="align-middle mr-1 fas fa-fw fa-arrow-alt-circle-right"></i> Sign out</a>
+                        </div>
+                    </li>
+                </ul>
+            </div> -->
+    
+        </nav>
+        <main class="content">
+            <div class="container-fluid">
+    
+                <div class="header">
+                    <h1 class="header-title">
+                        Volores de depreciación
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a [routerLink]="['/dashboard']">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a>Valores de depreciación</a></li>
+                        </ol>
+                    </nav>
+                </div>
+    
+                <div class="row">
+                    <!-- <div  class="col-12 col-xl-12">
+                        <div class="alert alert-success alert-outline alert-dismissible" role="alert">
+                            <div class="alert-icon">
+                                <i class="far fa-fw fa-bell"></i>
+                            </div>
+                            <div class="alert-message">
+                                <strong>Hello there!</strong> A simple success alert—check it out!
+                            </div>
+    
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    </div> -->
+                    <div class="col-12 col-xl-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    
+                                    <div class="col-lg-6">
+                                        
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#modal-save-valor"  class="btn btn-primary btn-lg" >Nuevo</a>
+
+                                    </div>
+                                </div>
+                                <br>
+                                <h5 class="card-title">Listado de valores</h5>
+                                <!-- <div class="row">
+                                    <div class="col-lg-6">
+                                        <form #searchForm="ngForm" (ngSubmit)="search(searchForm)">
+                                            <div class="input-group" id="datetimepicker-minimum" data-target-input="nearest">
+                                                <input type="text" class="form-control datetimepicker-input" #filtro="ngModel" placeholder="Buscar por nombre"
+                                                name="filtroText" [(ngModel)]="filtroText">
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="input-group-text"><i class="fa fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div> -->
+                                
+                            </div>
+                            <table class="table table-striped table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th class="text-center">Valor de depreciación</th>
+                                        <th class="text-center">Fecha de actualización</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let item of valordepreciacion | paginate: { itemsPerPage: 5, currentPage: p }">
+                                        <td class="text-center">{{item.Valor}}</td>           
+                                        <td class="text-center">{{item.FechaValorDep | date:'dd-MM-yyyy'}}</td>
+                                        
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn mb-1 btn-secondary dropdown-toggle" 
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-cog"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    
+                                                    <a class="dropdown-item" (click)="eliminar(item.idValorDep)">Eliminar registro</a>
+                                                   
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-12">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        `
+                    </div>
+                </div>
+                <!--MODAL REGISTRAR VALOR-->
+                <div class="modal fade" id="modal-save-valor" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+                    <form #valorForm="ngForm" (ngSubmit)="save_valor(valorForm)">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content col-lg-11">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Registrar nuevo valor</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body m-3">
+                                <div class="form-group col-lg-8">
+                                        <b>Valor (Bs)</b>
+                                        <input type="number" class="form-control" #Valor="ngModel" name="Valor" [(ngModel)]="valordepreciacion.Valor" required>
+                                </div>
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>                               
+            </div>
+        </main>
+        
+    </div>
+</div>

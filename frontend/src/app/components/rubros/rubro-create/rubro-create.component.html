@@ -1,0 +1,104 @@
+<div class="wrapper">
+    <app-sidebar style="background-color: white !important;"></app-sidebar>
+
+    <div class="main">
+        <nav class="navbar navbar-expand navbar-theme">
+            <a class="sidebar-toggle d-flex mr-2">
+                <i class="hamburger align-self-center"></i>
+            </a>
+        </nav>
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Registro de Rubro Contable
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="" [routerLink]="['/rubros']">Rubros contables</a></li>
+                            <li class="breadcrumb-item"><a>Registro de rubro contable</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-12" *ngIf="error_message">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <div class="alert-message">
+                                {{error_message}}
+                            </div>
+
+                            <button type="button" class="close" (click)="error_alert()" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12" *ngIf="success_message">
+                        <div class="alert alert-info alert-dismissible" role="alert">
+                            <div class="alert-message">
+                                {{success_message}}
+                            </div>
+
+                            <button type="button" class="close" (click)="success_alert()" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-10">
+                        <div class="card">
+                            <div id="card-header"class="card-header">
+                                <h5 id="textoblanco" class="card-title">Complete el formulario</h5>
+                                <h6 id="textoblanco1" class="card-subtitle text-muted">Agregar rubro contable</h6>
+                            </div>
+                            <div class="card-body">
+                                <form #rubroForm="ngForm" (ngSubmit)="onSubmit(rubroForm)">
+                                    <div class="row">
+                                        <div class="form-group col-lg-9">
+                                            <b>Nombre de rubro contable</b>
+                                            <input type="text" class="form-control" #Nombre="ngModel" name="Nombre" [(ngModel)]="rubros.Nombre" placeholder="Rubro" required>
+                                       </div>
+                                    </div>
+                                   <div class="row">
+                                        <div class="form-group col-lg-4">
+                                            <b>Vida util (Años)</b>
+                                            <input type="number" class="form-control" #VidaUtil="ngModel" name="VidaUtil" [(ngModel)]="rubros.VidaUtil" placeholder="0" required>
+                                        </div>
+                                        <div class="form-group col-lg-5">
+                                            <b>Coeficiente de depreciación(%)</b>
+                                            <input type="number" class="form-control" #CoeficienteD="ngModel" name="CoeficienteD" [(ngModel)]="rubros.CoeficienteD" placeholder="0%" required>
+                                        </div>
+                                   </div>
+                                   <div class="row">
+                                        <div class="form-group col-lg-4">
+                                            <label class="form-label"><b>Depreciable</b></label>
+                                            <select class="form-control" #Depreciable="ngModel"  name="Depreciable" [(ngModel)]="rubros.Depreciable" required>
+                                                <option  value="" >SELECCIONAR</option>
+                                                <option value="1" >Si</option>
+                                                <option value="0" >No</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-4">
+                                            <label class="form-label"><b>Actualiza</b></label>
+                                            <select class="form-control" #Actualiza="ngModel"  name="Actualiza" [(ngModel)]="rubros.Actualiza" required>
+                                                <option value="" >SELECCIONAR</option>
+                                                <option value="1" >Si</option>
+                                                <option value="0" >No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success btn-lg">Guardar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+       
+    </div>
+</div>
+    

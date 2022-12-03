@@ -1,0 +1,4 @@
+//Convertir codigo js en estandar, para ser reconocido en todos los navegadores
+{
+    "presets" : ["@babel/preset-env"]
+}

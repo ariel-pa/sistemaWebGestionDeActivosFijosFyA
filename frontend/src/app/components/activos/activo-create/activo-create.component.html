@@ -1,0 +1,173 @@
+
+<div class="wrapper">
+    <app-sidebar style="background-color: white !important;"></app-sidebar>
+
+    <div class="main">
+        <nav class="navbar navbar-expand navbar-theme">
+            <a class="sidebar-toggle d-flex mr-2">
+                <i class="hamburger align-self-center"></i>
+            </a>
+        </nav>
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Registro de activo fijo
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a [routerLink]="['/activos']">Activos fijos</a></li>
+                            <li class="breadcrumb-item"><a>Registro de activo fijo</a></li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-12" *ngIf="error_message">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <div class="alert-message">
+                                {{error_message}}
+                            </div>
+
+                            <button type="button" class="close" (click)="error_alert()" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12" *ngIf="success_message">
+                        <div class="alert alert-info alert-dismissible" role="alert">
+                            <div class="alert-message">
+                                {{success_message}}
+                            </div>
+
+                            <button type="button" class="close" (click)="success_alert()" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-8">
+                        <div class="card">
+                            <div id="card-header"class="card-header">
+                                <h5 id="textoblanco" class="card-title">Complete el formulario</h5>
+                                <!-- <h6 id="textoblanco1" class="card-subtitle text-muted">Agregar activo fijo</h6> -->
+                            </div>
+                            <div class="card-body">
+                                <form #activoForm="ngForm" (ngSubmit)="onSubmit(activoForm)">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Tipo activo fijo <b style="color: red">*</b></label>
+                                                <select class="form-control"  #idTipo="ngModel" required name="idTipo" [(ngModel)]="activo.idTipo">
+                                                    <option value="1" disabled>SELECCIONAR</option>
+                                                    <option value="{{item.idTipo}}" *ngFor="let item of tipoactivo">{{item.NombreActivo.toUpperCase()}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Procedencia <b style="color: red">*</b></label>
+                                                <input type="text" class="form-control" placeholder="" #Procedencia="ngModel"  name="Procedencia" [(ngModel)]="activo.Procedencia" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label class="form-label">Valor (Bs) <b style="color: red">*</b></label>
+                                                <input type="number" class="form-control" placeholder="Bs.0" #ValorRegistro="ngModel"  name="ValorRegistro" [(ngModel)]="activo.ValorRegistro" required>
+                                            </div>
+                                        </div>
+                                      
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Ufv de la fecha <b style="color: red">*</b></label>
+                                                <input type="number" class="form-control" placeholder="Ingrese ufv actual" #UfvInicial="ngModel"  name="UfvInicial" [(ngModel)]="activo.UfvInicial">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Numero de garantia <b style="color: red">*</b></label>
+                                                <input type="text" class="form-control" placeholder="" #Garantia="ngModel"  name="Garantia" [(ngModel)]="activo.Garantia" required>
+                                            </div> 
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="form-group ">
+                                                <label class="form-label">Factura <b style="color: red">*</b></label>
+                                                <input id="darkcyan" class=""  (change)="facSelected($event)" required type="file" style="width: 100% !important;">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Descripción <b style="color: red">*</b></label>
+                                        <textarea class="form-control" placeholder="Descripción breve de las caracteristicas del activo fijo." 
+                                        #Descripcion="ngModel"  name="Descripcion" [(ngModel)]="activo.Descripcion" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Observaciones</label>
+                                        <textarea class="form-control" placeholder="Observaciones si se tiene."  
+                                        #Observaciones="ngModel"  name="Observaciones" [(ngModel)]="activo.Observaciones"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Condiciones <b style="color: red">*</b></label>
+                                                <select class="form-control"  #idCondicion="ngModel" required name="idCondicion" [(ngModel)]="activo.idCondicion">
+                                                    <option value="1" disabled>SELECCIONAR</option>
+                                                    <option value="{{item.idCondicion}}" *ngFor="let item of condiciones">{{item.Nombre.toUpperCase()}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Rubro <b style="color: red">*</b></label>
+                                                <select class="form-control" aria-placeholder="Selcc" #idRubro="ngModel" required name="idRubro" [(ngModel)]="activo.idRubro" >
+                                                    <option value="1" disabled>SELECCIONAR</option>
+                                                    <option value="{{item.idRubro}}" *ngFor="let item of rubros">{{item.Nombre.toUpperCase()}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Proveedor <b style="color: red">*</b></label>
+                                                <select class="form-control"  #idProveedor="ngModel" required name="idProveedor" [(ngModel)]="activo.idProveedor" >
+                                                    <option value="1" disabled>SELECCIONAR</option>
+                                                    <option value="{{item.idProveedor}}" *ngFor="let item of proveedores">{{item.NombreProv.toUpperCase()}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                    
+
+                                    <button type="submit" class="btn btn-success  btn-lg">Guardar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-4">
+                        <div class="card">
+                            <div class="card-header">
+
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <img alt="Fe y Alegria" [src]="imgSelect || '../../../../assets/img/default.jpg'"  width="128" height="128">
+                                    <div class="mt-2">
+                                        <input id="darkcyan" class="btn"  (change)="imgSelected($event)" required type="file" style="width: 100% !important;">
+                                    </div>
+                                    <small>Selecione una imagen <b style="color: red">*</b></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+       
+    </div>
+</div>
+    
